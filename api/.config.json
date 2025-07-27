@@ -1,0 +1,14 @@
+{
+    "servername": "localhost",
+    "port": 3306,
+    "username": "adatr",
+    "password": "f3oHCjb7",
+    "dbname": "adayattheraces",
+    "api": "http://localhost",
+    "smtpServer": "smtp.dreamhost.com",
+    "smtpPort": 465,
+    "smtpUser": "server@crantastic.click",
+    "smtpPass": "EnPc&rQB9Quwzt4t",
+    "smtpFrom": "Crantastic Server",
+    "smtpFromEmail": "server@crantastic.click"
+}
