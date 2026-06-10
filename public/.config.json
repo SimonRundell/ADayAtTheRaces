@@ -1,6 +1,7 @@
 {
     "appName": "A Day at the Races",
-    "strapline": "a simple horse racing game",
-    "credits": "Simon Rundell 2024 - All rights reserved",
-    "api": "http://localhost"
+    "strapline": "A horse racing simulation game",
+    "credits": "Simon Rundell 2024 — CC BY-NC-SA 4.0",
+    "api": "/api",
+    "socketUrl": "http://localhost:3001"
 }

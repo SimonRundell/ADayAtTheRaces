@@ -1,677 +1,857 @@
-/******************************************* 
+/*
+  A Day At The Races - Stylesheet
+  Simon Rundell / CodeMonkey Design
+  Racing theme: deep green, old gold, cream
+*/
 
-    ADATR CSS SIMON RUNDELL CODEMONKEY DESIGN 
-    December 2024
-    
-*******************************************/
+/* -------------------------------------------------------
+   DESIGN TOKENS
+------------------------------------------------------- */
+:root {
+  --green-900:  #0d2b1a;
+  --green-800:  #1a5c3a;
+  --green-700:  #2d7a4a;
+  --green-600:  #3d9960;
+  --green-100:  #e6f2eb;
+  --gold:       #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-pale:  #f5e8b8;
+  --cream:      #f8f3e8;
+  --ivory:      #fffef9;
+  --navy:       #1a1a2e;
+  --muted:      #5c6b5c;
+  --border:     rgba(201,168,76,0.35);
+  --shadow-sm:  0 2px 8px rgba(13,43,26,0.12);
+  --shadow-md:  0 4px 20px rgba(13,43,26,0.18);
+  --shadow-lg:  0 8px 40px rgba(13,43,26,0.28);
+  --r:          6px;
+  --r-lg:       12px;
+  --font-body:  'Trebuchet MS', Trebuchet, Arial, sans-serif;
+  --font-serif: Georgia, 'Palatino Linotype', Palatino, serif;
+}
 
-/******************************************* 
-
-    BASELINE STYLES
-    
-*******************************************/
+/* -------------------------------------------------------
+   RESET & BASE
+------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: calc(10px + 1vmin);
-  background-color: #ffffff;
-  color: #000000;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--cream);
+  color: var(--navy);
   height: 100%;
-  width: 100vw;
+  width: 100%;
+}
+
+#root {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: 52px;
 }
-
 
 a {
-    font-weight: 500;
-    color: #ff0000;
-    text-decoration: inherit;
+  font-weight: 600;
+  color: var(--green-800);
+  text-decoration: none;
 }
-
-a:hover {
-    color: #000000;
-}
-
-
+a:hover { color: var(--gold); }
 
 h1 {
-    font-size: 2.2em;
-    line-height: 1.1;
+  font-family: var(--font-serif);
+  font-size: 1.9em;
+  line-height: 1.2;
+  margin: 0;
+}
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.2em;
+  line-height: 1.2;
+  margin: 0 0 0.75em;
 }
 
+p { text-wrap: pretty; margin: 0.3em 0; }
+div { text-wrap: pretty; }
+
+/* -------------------------------------------------------
+   BUTTONS
+------------------------------------------------------- */
 button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #e0e0e0;
-    cursor: pointer;
-    transition: border-color 0.25s;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: var(--green-800);
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  border-radius: var(--r);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
 }
 button:hover {
-    border-color: #000000;
+  background: var(--gold);
+  color: var(--green-900);
+  border-color: var(--green-900);
 }
-button:focus,
 button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid var(--gold-light);
+  outline-offset: 2px;
 }
 
+/* -------------------------------------------------------
+   FORM ELEMENTS
+------------------------------------------------------- */
 label {
-    margin-bottom: 0.5rem;
-  }
-  
-  label {
-    margin-top: 0.5rem;
-    font-weight: bold;
-    color: #757474; 
-  }
-  
-  input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    field-sizing: content;
-    -webkit-border-radius:4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-  }
-
-  .texttype {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    field-sizing: content;
-    font-size: larger;
-    -webkit-border-radius:4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-  }
-  
-  textarea {
-    /* width: 100%;
-    height: 100px; */
-    field-sizing: content;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-  }
-  
-  select {
-    background-color: #282c34;
-    color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-  }
-  
-  .sort-dropdown {
-    width: 50%;
-  }
-  
-  select.inverse {
-    background-color: white;
-    color: #282c34;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
-  }
-  
-  select:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  option {
-    background-color: #282c34;
-    color: white;
-  }
-  
-  option.inverse {
-    background-color: white;
-    color: #282c34;
-  }
-  
-  p {
-    text-wrap: pretty;
-  }
-  
-  div {
-    text-wrap: pretty;
-  }
-
-.fixedMessage {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    font-size: smaller;
-    background-color: #666666;
-    color: #ffffff;
-    text-align: center;
-    max-height: 50%; 
-    overflow: auto; 
-    padding: 10px; 
-    box-sizing: border-box; 
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+  margin-top: 8px;
 }
 
-/******************************************* 
-
-    HEADER
-    
-*******************************************/
-
-.head-logo {
-    width: 250px;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #c8bfa0;
+  border-radius: var(--r);
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: var(--ivory);
+  color: var(--navy);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus {
+  outline: none;
+  border-color: var(--green-800);
+  box-shadow: 0 0 0 3px rgba(26,92,58,0.12);
 }
 
-/******************************************* 
-
-    CONTAINERS 
-    
-*******************************************/
-
-.header-container {
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
-    width: 100vw;
-    padding: 5px;
-    align-items: center;
+.texttype {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #c8bfa0;
+  border-radius: var(--r);
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: var(--ivory);
 }
 
-.main-container {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-    width: 100%; 
-    padding: 5px;
-    box-sizing: border-box; 
+select {
+  background: var(--green-900);
+  color: var(--cream);
+  border: 1px solid var(--gold);
+  border-radius: var(--r);
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.2s;
 }
+select:focus { outline: none; border-color: var(--gold-light); }
+option { background: var(--green-900); color: var(--cream); }
 
-.race-container {
-    display: flex; 
-    flex-direction: row; 
-    width: 100%;
-    height: 450px; 
-    overflow: hidden;
-    box-sizing: border-box;
-    position: relative; 
-}
-
-.scheduled-races-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    min-width: 50%;
-    border: 1px solid #ff0000;
-}
-
-.results-container {
-    position: absolute;
-    left: 25px;
-    top: 10%;
-    width: 40%;
-    padding: 10px;
-    border: 3px solid #000000;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    min-width: 50%;
-    border-radius: 15px;
-    z-index: 99;
-}
-
-.results-header {
-    display:flex;
-    flex-direction: row;
-    margin-bottom: 10px;
-    background-color: #9c9c9c;
-    color: #ffffff;
-}
-
-.resultsheet {
-    border-bottom: 1px solid #000000;
-    padding: 2px 0; 
-    margin: 2px 10px; 
-}
-
-.login-container {
-    margin: 0 auto;
-    top: 50%;
-    width: 50vw;
-    margin-top: 20px;
-    min-width: 320px;
-    max-width: 500px;
-    z-index: 99;
-  }
-
-/******************************************* 
-
-    TABLES 
-    
-*******************************************/
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    text-align: left;
-}
-
-th, td {
-    padding: 4px 6px;
-    border: 1px solid #ddd;
-    vertical-align: top;
-}
-
-th {
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #fff;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-thead {
-    background-color: #333;
-    color: white;
-}
-
-thead th {
-    background-color: #333;
-    color: white;
-}
-
-tbody tr td {
-    border: 1px solid #ddd;
-}
-
-.smallpad {
-    display: flex;
-    flex-direction: row;
-    padding: 2px;
-}
-
-/******************************************* 
-
-    MODAL
-    
-*******************************************/
-
-.modal {
-    display: block; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjusted for semi-transparency */
-}
-.modal-content {
-    background-color: #fefefe;
-    margin: 3% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
-    max-width: 600px; 
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-.modal-content h2 {
-    margin-top: 0;
-}
-
-.modal-content ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.modal-content ul li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.modal-content ul li:last-child {
-    border-bottom: none;
-}
-
-.bet-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.bet-form td {
-    padding: 8px;
-}
+.sort-dropdown { width: 50%; }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-}
-
-.input-group span {
-    margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
 }
 
 .form-group-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    text-align: center;
-    padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
 }
 
-/******************************************* 
-
-    PASSWORD
-    
-*******************************************/
-
-.password-reminder {
-    position: relative;
-    font-size: 12px;
-    color: #ccc;
-    top: -15px;
-  }
-
-  .login-header {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-align:center;
-  }
-
-  .login-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: #282c34;
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius:  8px;
-    -o-border-radius: 8px;
-    z-index: 99;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  .form-group-button {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-  }
-  
-  
-
-/******************************************* 
-
-    SMALL EFFECTS
-    
-*******************************************/
-
-.central-overlay-spinner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .central-overlay-spinner .spinner-content {
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-
-
-.box {
-    border: 1px solid #000000;
-    padding: 2px;
-    border-radius: 3px;
-    margin-right: 5px;
-    margin-left: 5px;
-    background-color: red;
-    color: white;
-    font-size: smaller;
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green-800);
 }
 
-.vvsmall {
-    border: 1px solid #717171;
-    padding: 1px;
-    background-color: #ffffff;
-    font-size: 8px;
-    border-radius: 5px;
-    position: relative;
-    top: -15px;
+/* -------------------------------------------------------
+   HEADER
+------------------------------------------------------- */
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+  width: 100%;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 100%);
+  border-bottom: 3px solid var(--gold);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
 }
 
-.small {
-    border: 1px solid #717171;
-    width: 100%;
-    padding: 2px;
-    background-color: #ffffff;
-    font-size: 10px;
-    border-radius: 5px;
-    position: relative;
+.header-container h1 {
+  color: var(--gold);
+  font-family: var(--font-serif);
+  font-size: 1.7em;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 2px 4px rgba(0,0,0,0.45);
+  flex: 1;
 }
 
-.smalltop {
-    margin-top: 10px;
-}
-
-.trophy {
-    width: 200px;
-    height: auto;
-}
-
-.right {
-    text-align: right;
-    padding-right: 25px;
-}
-
-.rctitle {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #ff0000;
-}
-
-.atFront {
-    z-index: 99;
-}
-
-.noborder {
-    border: none;
-}
-
-.smallgap {
-    margin-left: 10px;
-}
-
-.smalltop {
-    margin-top: 10px;
+.head-logo {
+  width: 160px;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .horiz-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
+  display: flex;
+  flex-direction: row;
+  gap: 0.6em;
+  align-items: center;
 }
 
-/******************************************* 
+/* -------------------------------------------------------
+   CLOCK BAR
+------------------------------------------------------- */
+.clock-bar {
+  width: 100%;
+  background: linear-gradient(180deg, #050f09 0%, #0a1f0f 100%);
+  border-bottom: 2px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px 8px;
+  gap: 2px;
+  flex-shrink: 0;
+}
 
-    RACE
-    
-*******************************************/
+.digital-clock {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3.6em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #22ff88;
+  text-shadow:
+    0 0 8px  rgba(34, 255, 136, 0.9),
+    0 0 18px rgba(34, 255, 136, 0.5),
+    0 0 36px rgba(34, 255, 136, 0.25);
+  line-height: 1;
+  user-select: none;
+}
+
+.countdown-display {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9ecfaa;
+  user-select: none;
+}
+
+.countdown-value {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--gold-light);
+  text-shadow: 0 0 8px rgba(232, 201, 106, 0.65);
+}
+
+/* -------------------------------------------------------
+   MAIN CONTAINERS
+------------------------------------------------------- */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px 16px;
+}
+
+/* -------------------------------------------------------
+   RACE TRACK
+------------------------------------------------------- */
+.race-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: var(--r);
+  border: 3px solid var(--gold);
+  box-shadow: var(--shadow-md);
+  /* Turf with lane stripe overlay */
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 43px,
+      rgba(255,255,255,0.10) 43px, rgba(255,255,255,0.10) 45px
+    ),
+    linear-gradient(
+      180deg,
+      #0f4d25 0%,
+      #1a6b35 12%,
+      #2d8a4a 28%,
+      #3aaa5c 45%,
+      #2d8a4a 62%,
+      #1a6b35 78%,
+      #0f4d25 100%
+    );
+}
+
+/* Finish line */
+.race-container::after {
+  content: 'FINISH';
+  position: absolute;
+  right: 12px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: repeating-linear-gradient(
+    180deg,
+    #ffffff 0px, #ffffff 8px,
+    #000000 8px, #000000 16px
+  );
+  z-index: 1;
+}
 
 .runner {
-    position: absolute; /* Ensure runners are positioned relative to the race-container */
-    transition: left 0.1s; /* Smooth transition for movement */
+  position: absolute;
+  transition: left 0.08s linear;
+  z-index: 2;
+  background-color: transparent; 
 }
-
 .runner img {
-    width: 50px; 
-    height: auto;
+  width: 48px;
+  height: auto;
+  mix-blend-mode: luminosity;
+  filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.6));
 }
 
-.runner span {
-    display: block;
-    margin-top: 5px;
+
+/* Horse name label beneath each runner */
+.vvsmall {
+  display: block;
+  background: rgba(255,255,255,0.92);
+  color: var(--green-900);
+  font-family: var(--font-body);
+  font-size: 7px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1px 4px;
+  position: relative;
+  top: -15px;
+  border: 1px solid rgba(0,0,0,0.15);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 64px;
+  text-overflow: ellipsis;
 }
 
-/******************************************* 
+/* -------------------------------------------------------
+   RACE CARD TABLE
+------------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+  background: var(--ivory);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
 
-    WINNINGS
-    
-*******************************************/
+thead th {
+  background: var(--green-800);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 9px 10px;
+  border-bottom: 2px solid var(--gold);
+}
 
+th, td {
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(odd)  { background: var(--ivory); }
+tbody tr:nth-child(even) { background: var(--cream); }
+tbody tr:hover           { background: var(--green-100); }
+tbody tr:last-child td   { border-bottom: none; }
+
+.smallpad {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+/* Racecourse name in the card */
+.rctitle {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--green-800);
+  letter-spacing: 0.02em;
+}
+
+/* -------------------------------------------------------
+   MODALS
+------------------------------------------------------- */
+.modal {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  background: rgba(13,43,26,0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5vh;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: var(--ivory);
+  width: 88%;
+  max-width: 680px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+/* Modal title bar */
+.modal-content h2 {
+  font-family: var(--font-serif);
+  background: linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 100%);
+  color: var(--gold);
+  padding: 14px 52px 14px 20px;
+  margin: 0;
+  font-size: 1.1em;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid var(--gold);
+}
+
+.modal-content > p {
+  padding: 4px 20px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.modal-content table {
+  margin: 8px 0 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Base close button — no position by default */
+.close {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-pale);
+  line-height: 1;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+.close:hover { color: #ffffff; background: none; border: none; }
+
+/* Close button anchored inside modal header */
+.modal-content { position: relative; }
+.modal-content .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 14px 18px;
+  z-index: 1;
+}
+
+/* Close button on results overlay */
+.results-container .close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  padding: 4px 8px;
+  font-size: 20px;
+}
+
+/* Logout × in the status bar */
+.fixedMessage .close {
+  color: var(--gold);
+  font-size: 18px;
+  padding: 2px 6px;
+  opacity: 0.8;
+}
+.fixedMessage .close:hover { opacity: 1; color: white; }
+
+.right { float: right; }
+
+/* -------------------------------------------------------
+   BET FORM (inside modal)
+------------------------------------------------------- */
+.bet-form { width: 100%; }
+.bet-form td {
+  padding: 9px 14px;
+  vertical-align: middle;
+  font-size: 13px;
+  font-family: var(--font-body);
+}
+.bet-form thead th {
+  padding: 9px 14px;
+}
+
+/* -------------------------------------------------------
+   LOGIN
+------------------------------------------------------- */
+.login-container {
+  margin: 48px auto;
+  width: 420px;
+  max-width: 90vw;
+}
+
+.login-header {
+  background: linear-gradient(150deg, var(--green-900) 0%, var(--green-800) 100%);
+  border-bottom: 3px solid var(--gold);
+  color: var(--gold);
+  padding: 24px;
+  text-align: center;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-header p {
+  font-family: var(--font-serif);
+  font-size: 1.55em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin: 0;
+  text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+}
+
+.login-header .head-logo { width: 130px; }
+
+.login-form {
+  background: var(--ivory);
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Secondary "Register" button */
+.login-form > button:not([type="submit"]):last-of-type {
+  background: transparent;
+  color: var(--green-800);
+  border-color: var(--green-700);
+}
+.login-form > button:not([type="submit"]):last-of-type:hover {
+  background: var(--green-100);
+  border-color: var(--green-800);
+}
+
+.small {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 10px;
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--cream);
+  line-height: 1.5;
+}
+
+.password-reminder { font-size: 11px; color: var(--muted); }
+
+/* -------------------------------------------------------
+   RESULTS OVERLAY
+------------------------------------------------------- */
+.results-container {
+  position: absolute;
+  left: 20px;
+  top: 8%;
+  min-width: 250px;
+  max-width: 400px;
+  width: 32%;
+  background: var(--ivory);
+  border: 3px solid var(--gold);
+  border-radius: var(--r-lg);
+  z-index: 99;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.results-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 100%);
+  border-bottom: 3px solid var(--gold);
+  padding: 8px 14px;
+}
+.results-header h1 {
+  font-family: var(--font-serif);
+  font-size: 1.25em;
+  color: var(--gold);
+  margin: 0;
+  flex: 1;
+}
+.trophy { width: 44px; height: auto; }
+
+/* Close button in results */
+.results-container > .close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 20px;
+  padding: 8px 12px;
+}
+
+.results-container > div {
+  padding: 6px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.resultsheet {
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  padding: 6px 16px;
+  margin: 0;
+  font-size: 13px;
+}
+p.resultsheet:last-of-type { border-bottom: none; }
+
+/* Medal tints for 1st/2nd/3rd */
+p.resultsheet:nth-of-type(1) {
+  background: linear-gradient(90deg, rgba(201,168,76,0.2) 0%, transparent 70%);
+  font-weight: 700;
+  color: #7a5800;
+}
+p.resultsheet:nth-of-type(2) {
+  background: linear-gradient(90deg, rgba(160,160,175,0.18) 0%, transparent 70%);
+  color: #3a3a4a;
+}
+p.resultsheet:nth-of-type(3) {
+  background: linear-gradient(90deg, rgba(160,90,40,0.14) 0%, transparent 70%);
+  color: #5c3010;
+}
+
+/* Rating badge next to result */
+.box {
+  display: inline-block;
+  background: var(--green-800);
+  color: var(--cream);
+  border: 1px solid var(--green-700);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+
+/* -------------------------------------------------------
+   WINNINGS MODAL
+------------------------------------------------------- */
 .winnings-modal {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 150px;
-    left: 10%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    z-index: 199;
-    border: 3px solid #000000;
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 10px;
-    width: 80%; 
-    max-width: 600px; 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 300;
+  background: var(--ivory);
+  border: 3px solid var(--gold);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  width: 92%;
+  max-width: 520px;
 }
 
 .winnings-header {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-height: 200px;
 }
-
-.winnings-header img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
+.winnings-header img,
+.winnings-header-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
-
 .winnings-header h1 {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ffffff;
-    font-size: 2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  color: var(--gold-light);
+  font-size: 2.2em;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.85);
+  white-space: nowrap;
+  margin: 0;
+  pointer-events: none;
 }
 
 .winnings-text {
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    font-size: 1.5em;
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
+  padding: 16px 24px;
+  font-size: 1.05em;
+  color: var(--navy);
+  text-align: center;
+  background: var(--ivory);
+  border-top: 2px solid var(--gold);
+  /* override old absolute positioning */
+  position: static;
+  transform: none;
+  bottom: auto;
+  left: auto;
 }
 
+.smalltop { margin-top: 8px; }
+
+/* -------------------------------------------------------
+   WALLET / STATUS BAR (fixed footer)
+------------------------------------------------------- */
+.fixedMessage {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, var(--green-900) 0%, #0d3520 100%);
+  border-top: 2px solid var(--gold);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 9px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 1000;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+}
+
+/* -------------------------------------------------------
+   LOADING SPINNER
+------------------------------------------------------- */
+.central-overlay-spinner {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,43,26,0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.central-overlay-spinner .spinner-content {
+  background: var(--ivory);
+  padding: 28px 36px;
+  border-radius: var(--r-lg);
+  border: 2px solid var(--gold);
+  box-shadow: var(--shadow-lg);
+}
+
+/* -------------------------------------------------------
+   RUNNER DETAILS HOVER PANEL
+------------------------------------------------------- */
 .runner-details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 2s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: var(--green-100);
+  border-radius: var(--r);
+  margin-top: 4px;
+}
+.runner-details.show { max-height: 240px; }
+
+.runner-details table {
+  font-size: 11px;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 0;
+}
+.runner-details td {
+  padding: 3px 8px;
+  border: none;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  background: transparent;
+}
+.runner-details tr:last-child td { border-bottom: none; }
+
+/* -------------------------------------------------------
+   UTILITY CLASSES
+------------------------------------------------------- */
+.smallgap   { margin-left: 8px; }
+.atFront    { z-index: 99; }
+.noborder,
+.noborder td { border: none !important; }
+
+/* -------------------------------------------------------
+   BET HISTORY — profit / loss colouring and drawer layout
+------------------------------------------------------- */
+.profit { color: #1a7a35; font-weight: 700; }
+.loss   { color: #a02020; font-weight: 700; }
+
+.drawer-section-head {
+  font-family: var(--font-serif);
+  font-size: 0.95em;
+  color: var(--green-800);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
 }
 
-.runner-details.show {
-    max-height: 200px; /* Adjust this value as needed */
+.drawer-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
 }
 
+.drawer-empty {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.time-small {
+  font-size: 10px;
+  color: var(--muted);
+}

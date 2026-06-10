@@ -58,3 +58,9 @@ backup/
 
 # Database files (optional - remove if you want to track these)
 data/
+
+# App config files contain credentials - never commit these
+server/.config.json
+
+# Claude Code project memory
+.claude/
